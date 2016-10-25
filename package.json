@@ -7,13 +7,24 @@
     },
     "author": "Cody Lindley <contact@codylindley.com>",
     "license": "MIT",
+    "scripts": {
+        "//": "Start webpack dev server, uses the webpack.config.babel.js",
+        "//": "-d is a shortcut for --debug --devtool eval-cheap-module-source-map --output-pathinfo",
+        "//": "--content-base is which directory is being servered",
+        "//": "--hot Enables Hot Module Replacement [Uses HotModuleReplacementPlugin]",
+        "//": "--open will open the code found in src directory at localhost:8080",
+        "start:dev": "webpack-dev-server -d --content-base src --hot --open --no-info",
+        "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////": "",
+        "//": "Build production code using webpack cli, uses the webpack.config.babel.js",
+        "//": "-p is a shortcut for --optimize-minimize --optimize-occurence-order",
+        "//": "--env=production will give the env value passed to the webpack config function a value of production",
+        "build": "webpack --color -p --env=production",
+        "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////": "",
+        "start:prod": "http-server build"
+    },
     "dependencies": {
         "react": "^15.3.2",
         "react-dom": "^15.3.2"
-    },
-    "scripts": {
-        "start:dev": "webpack-dev-server --content-base src --hot",
-        "start:prod": "http-server build"
     },
     "devDependencies": {
         "babel-cli": "6.18.0",

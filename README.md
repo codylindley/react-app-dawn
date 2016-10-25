@@ -19,12 +19,12 @@ However, a time will come when knowing the details off all aspects of a developm
 ### Yarn Dependancy Manager
 
 * [Yarn](https://yarnpkg.com/) is used to manage [npm](https://www.npmjs.com/) packages and modules, via configurations set in [package.json](https://yarnpkg.com/en/docs/package-json).
-* The [package.json](package.json) file is used by [Yarn](https://yarnpkg.com/) to mangae dependencies.
+* The [package.json](package.json) file is used by [Yarn](https://yarnpkg.com/) to manage dependencies.
 * The [yarn.lock](yarn.lock) file is [auto generatoed so that Yarn knows at all times the exact versions of all dependencies](https://yarnpkg.com/en/docs/yarn-lock).
 
 ### Webpack 2
 
-* Webpack 2 is used to take es2015 modules and translate them into a format the can run by web browser.
+* Webpack 2 is used to take es2015 modules and translate them into a format the can run in the web browser.
 * The configuration file for webpack is [webpack.config.babel.js](webpack.config.babel.js). By using babel in the name of the file the file itself will be babalized before running.
 
 ### Babel

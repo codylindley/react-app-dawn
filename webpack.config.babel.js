@@ -4,8 +4,12 @@ const webpackValidator = require('webpack-validator');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 
-module.exports = () => {
-    const config = webpackValidator({
+//this is the function that is called by webpack to return a webpack configuration object
+//the env parameter is passed form the webpack cli e.g. webpack --color -p --env=production
+const config = (env) => {
+
+    //set up webpack configuration object used for development
+    const config = {
         entry: ['./src/index.js'],
         output: {
             path: path.resolve(__dirname, 'build'),
@@ -28,7 +32,14 @@ module.exports = () => {
                         loader: 'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader'
                     })
                 },
-                { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/, query: { presets: ['latest', 'react', 'stage-0'] } },
+                {
+                    test: /\.js$/,
+                    loader: 'babel-loader',
+                    exclude: /node_modules/,
+                    query: {
+                        presets: ['latest', 'react', 'stage-0']
+                    }
+                }
             ]
         },
         plugins: [
@@ -44,6 +55,38 @@ module.exports = () => {
                 },
             })
         ]
-    });
-    return config
+    };
+
+    //augment the webpack config object used for development so it can be used for production
+    if (env === 'production') {
+
+        /*get rid of various test helpers, tell Webpack to use the production node environment.*/
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env': {
+                    'NODE_ENV': JSON.stringify('production')
+                }
+            })
+        );
+
+        // Merge all duplicate modules
+        config.plugins.push(
+            new webpack.optimize.DedupePlugin(),
+        );
+
+        // Minify and optimize the JavaScript
+        config.plugins.push(
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false, // ...but do not show warnings in the console (there is a lot of them)
+                },
+            })
+        );
+
+    }
+
+    //have this function return an webpack config object that is webpack validated 
+    return webpackValidator(config);
 };
+
+module.exports = config;
