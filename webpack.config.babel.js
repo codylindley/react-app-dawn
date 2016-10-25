@@ -5,8 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 
 //this is the function that is called by webpack to return a webpack configuration object
-//the env parameter is passed form the webpack cli e.g. webpack --color -p --env=production
-const config = (env) => {
+//the env parameter is passed from the webpack cli e.g. webpack --color -p --env=production
+const finalWebpackConfig = (env) => {
 
     //set up webpack configuration object used for development
     const config = {
@@ -89,4 +89,4 @@ const config = (env) => {
     return webpackValidator(config);
 };
 
-module.exports = config;
+module.exports = finalWebpackConfig;
