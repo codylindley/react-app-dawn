@@ -19,9 +19,8 @@
     "1//////////////////////////////////////////        build         ///////////////////////////////////////////////": "",
     "First rimraf (i.e. A deep deletion module for node) build directory then": "",
     "Build production code using webpack cli, uses the webpack.config.babel.js": "",
-    "-p is a shortcut for --optimize-minimize --optimize-occurence-order": "",
     "--env=production will give the env value passed to the webpack config function a value of production": "",
-    "build": "rimraf build && webpack -p --env=production",
+    "build": "rimraf build && webpack --env=production",
     "2//////////////////////////////////////////         start:prod          ////////////////////////////////////////": "",
     "start browser-sync server, serving the build directory reload if any files change in build directory": "",
     "start:prod": "browser-sync start --server 'build' --files 'build'"

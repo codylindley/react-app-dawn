@@ -9,7 +9,7 @@ This isn't a slight of the boilerplates or average developers. Both get the job 
 
 However, a time will come when knowing the details off all aspects of a development stack will be required. When this happens you'll need something that is more boilerplate and less application seed. That is React App Dawn.
 
-## Brief description of tools used (including implementation deails):
+## Broad description of tools used (including implementation deails):
 
 ### Node Version Manager
 

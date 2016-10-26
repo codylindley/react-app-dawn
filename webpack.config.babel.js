@@ -131,11 +131,21 @@ const finalWebpackConfig = (env) => {
             new webpack.optimize.DedupePlugin(),
         );
 
+        // saves a couple of kBs
+        config.plugins.push(
+            new webpack.LoaderOptionsPlugin({
+                minimize: true,
+                debug: false,
+                quiet: true
+            })
+        );
+
         // Minify and optimize the JavaScript bundle
         config.plugins.push(
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
-                    // ...but do not show warnings in the console (there is a lot of them)
+                    screw_ie8: true,
+                    // do not show warnings in the console (there is a lot of them)
                     warnings: false
                 }
             })
