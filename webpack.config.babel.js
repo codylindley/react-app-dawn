@@ -27,18 +27,27 @@ https://github.com/MoOx/postcss-cssnext
 */
 const cssnext = require('postcss-cssnext');
 
+/* This is a webpack plugin that simplifies creation of HTML files to serve your
+webpack bundles. This is especially useful for webpack bundles that include a hash
+in the filename which changes every compilation.
+https://github.com/ampedandwired/html-webpack-plugin */
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 /* This is the function that is called by webpack to return a webpack configuration object.
 The env parameter is passed from the webpack cli e.g. webpack --color -p --env=production */
 const finalWebpackConfig = (env) => {
     // set up webpack configuration object used for development
     const config = {
-        /* The Entry point tells webpack where to start and follows the graph of 
+        /* The Entry point(s) telling webpack where to start and follow the graph of 
         dependencies to know what to bundle */
-        entry: ['./src/index.js'],
+        entry: { // using two bundles or chunks
+            thirdparty: ['react', 'react-dom'], // bundle thridparty code in a file called bundle.thirdparty.[hash].js
+            index: './src/index.js' // bundle all non-thridparty code in a file called bundle.index.[hash].js
+        },
         // The webpack output property describes to webpack how to treat bundled code.
         output: {
             path: path.resolve(__dirname, 'build'),
-            filename: 'bundle.js'
+            filename: 'bundle.[name].[hash].js'
         },
         module: {
             /* Loaders tell webpack how to treat these (shown with test:) files as modules as
@@ -78,7 +87,7 @@ const finalWebpackConfig = (env) => {
         Since most plugins are customizable via options, you need to create an instance
         of it by calling it with new.*/
         plugins: [
-            new ExtractTextPlugin('styles.css'),
+            // need comment
             new webpack.LoaderOptionsPlugin({
                 options: {
                     context: __dirname,
@@ -89,6 +98,19 @@ const finalWebpackConfig = (env) => {
                         })
                     ]
                 }
+            }),
+            /* Use the HtmlWebpackPlugin plugin to make index.html a template so css and js can
+            dynamically be added to the page. */
+            new HtmlWebpackPlugin({
+                template: './src/index.html',
+                inject: 'body'
+            }),
+            // Extract the CSS into a separate file
+            new ExtractTextPlugin('[name].[hash].css'),
+            /* The CommonsChunkPlugin can move modules that occur in multiple entry chunks
+            to a new entry chunk (the commons chunk). */
+            new webpack.optimize.CommonsChunkPlugin({
+                names: ['thirdparty']
             })
         ]
     };

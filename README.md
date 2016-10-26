@@ -32,9 +32,13 @@ However, a time will come when knowing the details off all aspects of a developm
 
 * Webpack uses Babel to transform [latest](http://babeljs.io/docs/plugins/preset-latest/), [stage0](http://babeljs.io/docs/plugins/preset-stage-0/), and [react](http://babeljs.io/docs/plugins/preset-react/) code to ES5 code.
 
+### Polyfill Browser DOM and JS features
+
+* The [`index.html`](src/index.html) page uses polyfill.io to fill any [missing modern browser features](https://polyfill.io/v2/docs/features/) (e.g. DOM & JS)
 
 ## Conventions used:
 
 * Don't place unecessary configurations in package.json that can be contained in there own configuration file (e.g. .babelrc, .nvmrc, .eslintrc, .stylelintrc).
+* Attempt to keep the webpack config small and simple favoring adding configurations to scripts in package.json
 
 
