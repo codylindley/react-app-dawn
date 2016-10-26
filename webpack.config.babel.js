@@ -1,20 +1,48 @@
+
+// the path module provides utilities for working with file and directory paths.
 const path = require('path');
+
+// webpack
 const webpack = require('webpack');
+
+/* This package provides a joi object schema for webpack configs.
+This gets you a) static type safety, b) property spell checking and c) semantic validations such as
+"loader and loaders can not be used simultaneously" or "query can only be used
+with loader, not with loaders".
+https://github.com/js-dxtools/webpack-validator
+*/
 const webpackValidator = require('webpack-validator');
+
+/* It moves every require("style.css") in entry chunks into a separate css output file.
+So your styles are no longer inlined into the javascript, but separate in a
+css bundle file (styles.css). If your total stylesheet volume is big, it will be
+faster because the stylesheet bundle is loaded in parallel to the javascript bundle.
+https://github.com/webpack/extract-text-webpack-plugin */
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+/* PostCSS-cssnext is a PostCSS plugin that helps you to use the latest CSS syntax today.
+It transforms CSS specs into more compatible CSS so you don’t need to wait for
+browser support.
+https://github.com/MoOx/postcss-cssnext
+*/
 const cssnext = require('postcss-cssnext');
 
-// this is the function that is called by webpack to return a webpack configuration object
-// the env parameter is passed from the webpack cli e.g. webpack --color -p --env=production
+/* This is the function that is called by webpack to return a webpack configuration object.
+The env parameter is passed from the webpack cli e.g. webpack --color -p --env=production */
 const finalWebpackConfig = (env) => {
     // set up webpack configuration object used for development
     const config = {
+        /* The Entry point tells webpack where to start and follows the graph of 
+        dependencies to know what to bundle */
         entry: ['./src/index.js'],
+        // The webpack output property describes to webpack how to treat bundled code.
         output: {
             path: path.resolve(__dirname, 'build'),
             filename: 'bundle.js'
         },
         module: {
+            /* Loaders tell webpack how to treat these (shown with test:) files as modules as
+            they are added to your dependency graph. i.e. what to do with non-js files */
             loaders: [
                 { test: /\.png$/, loader: 'url-loader?limit=100000', exclude: /node_modules/ },
                 { test: /\.jpg$/, loader: 'file-loader', exclude: /node_modules/ },
@@ -41,6 +69,14 @@ const finalWebpackConfig = (env) => {
                 }
             ]
         },
+
+        /* Since Loaders only execute transforms on a per-file basis, Plugins are most commonly
+        used (but not limited to) performing actions and custom functionality on "compilations"
+        or "chunks" of your bundled modules (and so much more).
+
+        In order to use a plugin, you just need to require() it and add it to the plugins array.
+        Since most plugins are customizable via options, you need to create an instance
+        of it by calling it with new.*/
         plugins: [
             new ExtractTextPlugin('styles.css'),
             new webpack.LoaderOptionsPlugin({
@@ -49,7 +85,7 @@ const finalWebpackConfig = (env) => {
                     postcss: [
                         cssnext({
                             // Allow future CSS features to be used, also auto-prefixes the CSS...
-                            browsers: ['last 2 versions', 'IE > 10'], // ...based on this browser list
+                            browsers: ['last 2 versions', 'IE > 10']
                         })
                     ]
                 }
@@ -59,7 +95,7 @@ const finalWebpackConfig = (env) => {
 
     // augment the webpack config object used for development so it can be used for production
     if (env === 'production') {
-        /* get rid of various test helpers, tell Webpack to use the production node environment. */
+        // get rid of various test helpers, tell Webpack to use the production node environment.
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env': {
@@ -73,7 +109,7 @@ const finalWebpackConfig = (env) => {
             new webpack.optimize.DedupePlugin(),
         );
 
-        // Minify and optimize the JavaScript
+        // Minify and optimize the JavaScript bundle
         config.plugins.push(
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
