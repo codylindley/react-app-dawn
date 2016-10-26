@@ -1,13 +1,13 @@
 # react-app-dawn
 
-It is likley the case that using one of these boilerplates is more than adequite for the average developer working on an average React app.
+It is likley the case that using one of the boilerplates list below is more than adequite for the average developer working on an average React app.
 
 * [http://reactboilerplate.com](http://reactboilerplate.com)
 * [redux-easy-boilerplate](https://github.com/anorudes/redux-easy-boilerplate)
 
-This isn't a slight of the boilerplates or the average developer. Both get the job done in most situtaions.
+This isn't a slight of the boilerplates or average developers. Both get the job done just fine in most situtaions.
 
-However, a time will come when knowing the details off all aspects of a development stack will be required. When this happens you'll need something that more boilerplate and less application seed.
+However, a time will come when knowing the details off all aspects of a development stack will be required. When this happens you'll need something that is more boilerplate and less application seed. That is React App Dawn.
 
 ## Brief description of tools used (including implementation deails):
 
