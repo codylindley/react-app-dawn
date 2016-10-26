@@ -25,7 +25,8 @@ However, a time will come when knowing the details off all aspects of a developm
 ### Webpack 2
 
 * Webpack 2 is used to take es2015 modules and translate them into a format the can run in the web browser.
-* The configuration file for webpack is [webpack.config.babel.js](webpack.config.babel.js). By using babel in the name of the file the file itself will be babalized before running.
+* The configuration file for webpack is [webpack.config.babel.js](webpack.config.babel.js). 
+* By using babel in the name of the file the file, [webpack.config.babel.js](webpack.config.babel.js), it will be babalized before running.
 
 ### Babel
 
