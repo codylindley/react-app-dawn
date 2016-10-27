@@ -12,7 +12,7 @@ However, a time will come when knowing the details off all aspects of a developm
 ## Installation:
 
 1. Install Node & npm
-2. run > `npm i webpack-dev-server webpack eslint stylelint browser-sync rimraf -g` from a terminal
+2. run > `npm i webpack-dev-server@2.1.0-beta.9 webpack@2.1.0-beta.25 eslint stylelint browser-sync rimraf -g` from a terminal
 3. Download this repo, `cd` into the repo directory from a terminal and run > `npm install`
 4. run > `npm run start:dev` this will open the app up in a web browser at localhost:8080
 
