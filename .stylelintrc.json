@@ -1,5 +1,5 @@
 {
-    "extends": "stylelint-config-standard",
+    "extends": "./linters/css/custom-stylelint-config-standard.js",
     "rules": {
         "color-hex-case": "upper",
         "string-quotes": "single",

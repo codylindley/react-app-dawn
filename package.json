@@ -8,7 +8,7 @@
   "author": "Cody Lindley <contact@codylindley.com>",
   "license": "MIT",
   "scripts": {
-    "0///////////////////////////////////////////        start:dev          /////////////////////////////////////////": "",
+    "0///////////////////////////////////////////        start:dev          //////////////////////////////////////": "",
     "Start webpack dev server, uses the webpack.config.babel.js": "",
     "-d is a shortcut for --debug --devtool eval-cheap-module-source-map --output-pathinfo": "",
     "--content-base is which directory is being servered": "",
@@ -16,14 +16,20 @@
     "--open will open the code found in src directory at localhost:8080": "",
     "--no-info this will suppress the wall of info in the terminal when starting up webpack-dev-server": "",
     "start:dev": "webpack-dev-server -d --content-base src --hot --open --no-info",
-    "1//////////////////////////////////////////        build         ///////////////////////////////////////////////": "",
+    "1//////////////////////////////////////////        build         ////////////////////////////////////////////": "",
     "First rimraf (i.e. A deep deletion module for node) build directory then": "",
     "Build production code using webpack cli, uses the webpack.config.babel.js": "",
     "--env=production will give the env value passed to the webpack config function a value of production": "",
     "build": "rimraf build && webpack --env=production",
-    "2//////////////////////////////////////////         start:prod          ////////////////////////////////////////": "",
+    "2//////////////////////////////////////////         start:prod          /////////////////////////////////////": "",
     "start browser-sync server, serving the build directory reload if any files change in build directory": "",
-    "start:prod": "browser-sync start --server 'build' --files 'build'"
+    "start:prod": "browser-sync start --server 'build' --files 'build'",
+    "3//////////////////////////////////////////         lint:js          ////////////////////////////////////////": "",
+    "lint the .js files in src": "",
+    "lint:js": "eslint './src/**/*.js'",
+    "4//////////////////////////////////////////         lint:css          ///////////////////////////////////////": "",
+    "lint the .css files in src": "",
+    "lint:css": "stylelint './src/**/*.js'"
   },
   "dependencies": {
     "react": "^15.3.2",
@@ -52,7 +58,6 @@
     "rimraf": "^2.5.4",
     "style-loader": "0.13.1",
     "stylelint": "^7.5.0",
-    "stylelint-config-standard": "^14.0.0",
     "webpack": "2.1.0-beta.25",
     "webpack-dev-server": "2.1.0-beta.9",
     "webpack-validator": "2.2.9"
