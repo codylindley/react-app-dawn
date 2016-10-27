@@ -45,6 +45,27 @@ const finalWebpackConfig = (env) => {
             /* Loaders tell webpack how to treat these (shown with test:) files as modules as
             they are added to your dependency graph. i.e. what to do with non-js files */
             rules: [
+                { // WARNING this must remain the first object in the array
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                localIdentName: '[local]__[path][name]__[hash:base64:5]',
+                                /* A CSS Module is a CSS file in which all class names and
+                                animation names are scoped locally by default.
+                                https://github.com/css-modules/css-modules */
+                                modules: true,
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader'
+                        }
+                    ]
+                },
                 { test: /\.png$/, loader: 'url-loader?limit=100000' },
                 { test: /\.jpg$/, loader: 'file-loader' },
                 { test: /\.jpeg$/, loader: 'file-loader' },
@@ -52,16 +73,6 @@ const finalWebpackConfig = (env) => {
                 { test: /\.txt$/, loader: 'raw-loader' },
                 { test: /\.json$/, loader: 'json-loader' },
                 { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000' },
-                {
-                    test: /\.css$/,
-                    loader: ExtractTextPlugin.extract({
-                        fallbackLoader: 'style-loader',
-                        /* A CSS Module is a CSS file in which all class names and
-                        animation names are scoped locally by default.
-                        https://github.com/css-modules/css-modules */
-                        loader: `css-loader?modules${env ? '&minimize' : '&sourceMap'}&importLoaders=1&localIdentName=[path]__[local]__[hash:base64:3]!postcss-loader`
-                    })
-                },
                 {
                     test: /\.js$/,
                     loader: 'babel-loader',
@@ -76,11 +87,11 @@ const finalWebpackConfig = (env) => {
         /* Since Loaders only execute transforms on a per-file basis, Plugins are most commonly
         used (but not limited to) performing actions and custom functionality on "compilations"
         or "chunks" of your bundled modules (and so much more).
-
         In order to use a plugin, you just need to require() it and add it to the plugins array.
         Since most plugins are customizable via options, you need to create an instance
         of it by calling it with new.*/
         plugins: [
+            new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
             // need comment
             new webpack.LoaderOptionsPlugin({
                 options: {
@@ -124,6 +135,17 @@ const finalWebpackConfig = (env) => {
 
     // augment the webpack config object used for development so it can be used for production
     if (env === 'production') {
+        config.module.rules.shift();// remove the first rule
+        config.module.rules.push({// add a new rule for CSS for production
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract({
+                fallbackLoader: 'style-loader',
+                /* A CSS Module is a CSS file in which all class names and
+                animation names are scoped locally by default.
+                https://github.com/css-modules/css-modules */
+                loader: 'css-loader?modules&minimize&importLoaders=1&localIdentName=[path]__[local]__[hash:base64:3]!postcss-loader'
+            })
+        });
         // get rid of various test helpers, tell Webpack to use the production node environment.
         config.plugins.push(
             new webpack.DefinePlugin({
