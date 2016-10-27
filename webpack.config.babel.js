@@ -26,11 +26,11 @@ https://github.com/ampedandwired/html-webpack-plugin */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 /* This is the function that is called by webpack to return a webpack configuration object.
-The env parameter is passed from the webpack cli e.g. webpack --color -p --env=production */
+The env parameter is passed from the webpack cli e.g. webpack --env=production */
 const finalWebpackConfig = (env) => {
     // set up webpack configuration object used for development
     const config = {
-        /* The Entry point(s) telling webpack where to start and follow the graph of 
+        /* The Entry point(s) telling webpack where to start and follow the graph of
         dependencies to know what to bundle */
         entry: { // using two bundles or chunks
             thirdparty: ['react', 'react-dom'], // bundle thridparty code in a file called bundle.thirdparty.[hash].js
@@ -94,10 +94,23 @@ const finalWebpackConfig = (env) => {
                 }
             }),
             /* Use the HtmlWebpackPlugin plugin to make index.html a template so css and js can
-            dynamically be added to the page. */
+            dynamically be added to the page. This will also take care of moving the index.html file
+            to the build directory using the index.html in src as a template.
+            https://github.com/ampedandwired/html-webpack-plugin
+            */
             new HtmlWebpackPlugin({
                 template: './src/index.html',
-                inject: 'body'
+                inject: 'body',
+                // https://github.com/kangax/html-minifier#options-quick-reference
+                minify: env ? { // will minify html
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    keepClosingSlash: true,
+                    minifyURLs: true
+                } : false
             }),
             // Extract the CSS into a separate file
             new ExtractTextPlugin('[name].[hash].css'),
