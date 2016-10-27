@@ -9,6 +9,22 @@ This isn't a slight of the boilerplates or average developers. Both get the job 
 
 However, a time will come when knowing the details off all aspects of a development stack will be required. When this happens you'll need something that is more boilerplate and less application seed. That is React App Dawn.
 
+## Installation:
+
+1. Install Node & npm
+2. run > `npm i webpack-dev-server webpack eslint stylelint browser-sync rimraf -g` from a terminal
+3. Download this repo, `cd` into the repo directory from a terminal and run > `npm install`
+
+## npm CLI scripts:
+
+|`npm run <script>`|Description|
+|------------------|-----------|
+|`npm run start:dev`|Start webpack dev server, serve `src` directory at localhost:8080|
+|`npm run build`|Create a build version (bundle, lint, minify etc..) of `src`, place that in the `build` directory|
+|`npm run start:prod`|Start browser-sync, serve `build` directory at localhost:3000|
+|`npm run lint:js`|lint all js files in `src` directory|
+|`npm run lint:css`|lint all css file sin `src` directory|
+
 ## Broad description of tools used (including implementation deails):
 
 ### Node Version Manager
