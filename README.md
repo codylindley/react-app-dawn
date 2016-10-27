@@ -17,7 +17,7 @@ However, a time will come when knowing the details off all aspects of a developm
 
 ## npm CLI scripts:
 
-|`npm run <script>`|Description|
+|   `npm run [name:name]`   |Description|
 |------------------|-----------|
 |`npm run start:dev`|Start webpack dev server, serve `src` directory at localhost:8080|
 |`npm run build`|Create a build version (bundle, lint, minify etc..) of `src`, place that in the `build` directory|
