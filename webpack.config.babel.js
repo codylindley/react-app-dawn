@@ -5,14 +5,6 @@ const path = require('path');
 // webpack
 const webpack = require('webpack');
 
-/* This package provides a joi object schema for webpack configs.
-This gets you a) static type safety, b) property spell checking and c) semantic validations such as
-"loader and loaders can not be used simultaneously" or "query can only be used
-with loader, not with loaders".
-https://github.com/js-dxtools/webpack-validator
-*/
-const webpackValidator = require('webpack-validator');
-
 /* It moves every require("style.css") in entry chunks into a separate css output file.
 So your styles are no longer inlined into the javascript, but separate in a
 css bundle file (styles.css). If your total stylesheet volume is big, it will be
@@ -52,20 +44,22 @@ const finalWebpackConfig = (env) => {
         module: {
             /* Loaders tell webpack how to treat these (shown with test:) files as modules as
             they are added to your dependency graph. i.e. what to do with non-js files */
-            loaders: [
-                { test: /\.png$/, loader: 'url-loader?limit=100000', exclude: /node_modules/ },
-                { test: /\.jpg$/, loader: 'file-loader', exclude: /node_modules/ },
-                { test: /\.jpeg$/, loader: 'file-loader', exclude: /node_modules/ },
-                { test: /\.gif$/, loader: 'file-loader', exclude: /node_modules/ },
-                { test: /\.txt$/, loader: 'raw-loader', exclude: /node_modules/ },
-                { test: /\.json$/, loader: 'json-loader', exclude: /node_modules/ },
+            rules: [
+                { test: /\.png$/, loader: 'url-loader?limit=100000' },
+                { test: /\.jpg$/, loader: 'file-loader' },
+                { test: /\.jpeg$/, loader: 'file-loader' },
+                { test: /\.gif$/, loader: 'file-loader' },
+                { test: /\.txt$/, loader: 'raw-loader' },
+                { test: /\.json$/, loader: 'json-loader' },
                 { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000' },
                 {
                     test: /\.css$/,
-                    exclude: /node_modules/,
                     loader: ExtractTextPlugin.extract({
                         fallbackLoader: 'style-loader',
-                        loader: 'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader'
+                        /* A CSS Module is a CSS file in which all class names and
+                        animation names are scoped locally by default.
+                        https://github.com/css-modules/css-modules */
+                        loader: `css-loader?modules${env ? '&minimize' : '&sourceMap'}&importLoaders=1&localIdentName=[path]__[local]__[hash:base64:3]!postcss-loader`
                     })
                 },
                 {
@@ -152,8 +146,8 @@ const finalWebpackConfig = (env) => {
         );
     }
 
-    // have this function return an webpack config object that is webpack validated
-    return webpackValidator(config);
+    // have this function return an webpack config object
+    return config;
 };
 
 module.exports = finalWebpackConfig;

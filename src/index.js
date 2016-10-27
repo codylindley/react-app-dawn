@@ -1,5 +1,7 @@
+import 'sanitize.css/sanitize.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/h1.js';
+import H1 from './components/h1.js';
 
-ReactDOM.render(<App/>, document.body.appendChild(document.createElement('div')));
+ReactDOM.render(<H1/>, document.body.appendChild(document.createElement('div')));

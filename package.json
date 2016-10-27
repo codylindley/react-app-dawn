@@ -27,7 +27,8 @@
   },
   "dependencies": {
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "sanitize.css": "^4.1.0"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",
