@@ -66,13 +66,17 @@ const finalWebpackConfig = (env) => {
                         }
                     ]
                 },
-                { test: /\.png$/, loader: 'url-loader?limit=100000' },
-                { test: /\.jpg$/, loader: 'file-loader' },
-                { test: /\.jpeg$/, loader: 'file-loader' },
-                { test: /\.gif$/, loader: 'file-loader' },
+                {
+                    test: /.*\.(gif|png|jpe?g|svg)$/i,
+                    loaders: [
+                        'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                        'image-webpack?{optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}, mozjpeg: {quality: 65}}'
+                    ]
+                },
                 { test: /\.txt$/, loader: 'raw-loader' },
+                { test: /\.(mp4|webm)$/, loader: 'url-loader?limit=10000' },
                 { test: /\.json$/, loader: 'json-loader' },
-                { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000' },
+                { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'file-loader' },
                 {
                     test: /\.js$/,
                     loader: 'babel-loader',
@@ -178,6 +182,10 @@ const finalWebpackConfig = (env) => {
                     warnings: false
                 }
             })
+        );
+        // A plugin for a more aggressive chunk merging strategy.
+        config.plugins.push(
+            new webpack.optimize.AggressiveMergingPlugin()
         );
     }
 
