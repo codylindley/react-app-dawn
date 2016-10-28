@@ -35,7 +35,7 @@ However, a time will come when knowing the details off all aspects of a developm
 
 #### Webpack 2
 
-* Webpack 2 is used to take es2015 modules and translate them into chunked format the can run in the web browser.
+* Webpack 2 is used to take es2015 modules and translate them into a chunked format that can run in web browsers.
 * The configuration file for webpack is [webpack.config.babel.js](webpack.config.babel.js). 
 * By using babel in the name of the file the file, [webpack.config.babel.js](webpack.config.babel.js), it will be babalized before running.
 
@@ -53,8 +53,9 @@ However, a time will come when knowing the details off all aspects of a developm
 
 ## Conventions used:
 
+* Keep webpack config to a small single file that deals with both dev and production.
+* Own the js and CSS linter rules (starting point taken from [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) and [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard))
 * Don't place unecessary configurations in package.json that can be contained in there own configuration file (e.g. .babelrc, .nvmrc, .eslintrc, .stylelintrc).
-* Attempt to keep the webpack config small and simple favoring adding configurations to scripts in package.json
 * Linting happens during development in the developers editor and at build time
 
 

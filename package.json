@@ -15,10 +15,11 @@
     "--open will open the code found in src directory at localhost:8080": "",
     "start:dev": "webpack-dev-server -d --content-base src --open",
     "1//////////////////////////////////////////        build         ////////////////////////////////////////////": "",
-    "First rimraf (i.e. A deep deletion module for node) build directory then": "",
-    "Build production code using webpack cli, uses the webpack.config.babel.js": "",
-    "--env=production will give the env value passed to the webpack config function a value of production": "",
-    "build": "rimraf build && webpack --env=production",
+    "Run js and CSS linters": "",
+    "rimraf build directory then (i.e. rimraf is a deep deletion module for node):": "",
+    "Build production code using webpack cli, uses the webpack.config.babel.js file": "",
+    "usae --env=production, which passes the env value to the webpack config function": "",
+    "build": "npm run lint:js && npm run lint:css && rimraf build && webpack --env=production",
     "2//////////////////////////////////////////         start:prod          /////////////////////////////////////": "",
     "start browser-sync server, serving the build directory reload if any files change in build directory": "",
     "start:prod": "browser-sync start --server 'build' --files 'build'",
@@ -27,7 +28,7 @@
     "lint:js": "eslint './src/**/*.js'",
     "4//////////////////////////////////////////         lint:css          ///////////////////////////////////////": "",
     "lint the .css files in src": "",
-    "lint:css": "stylelint './src/**/*.js'"
+    "lint:css": "stylelint './src/**/*.css'"
   },
   "dependencies": {
     "postcss-cssnext": "^2.8.0",
