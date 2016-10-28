@@ -53,7 +53,7 @@ const finalWebpackConfig = (env) => {
                             loader: 'css-loader',
                             options: {
                                 importLoaders: 1,
-                                localIdentName: '[local]__[path][name]__[hash:base64:5]',
+                                localIdentName: '[local]__[hash:base64:5]',
                                 /* A CSS Module is a CSS file in which all class names and
                                 animation names are scoped locally by default.
                                 https://github.com/css-modules/css-modules */
@@ -161,7 +161,7 @@ const finalWebpackConfig = (env) => {
 
         // Merge all duplicate modules
         config.plugins.push(
-            new webpack.optimize.DedupePlugin(),
+            new webpack.optimize.DedupePlugin()
         );
 
         // saves a couple of kBs

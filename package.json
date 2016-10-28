@@ -31,7 +31,6 @@
     "lint:css": "stylelint './src/**/*.css'"
   },
   "dependencies": {
-    "semantic-ui-button": "^2.2.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "sanitize.css": "^4.1.0"
