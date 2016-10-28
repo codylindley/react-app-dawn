@@ -13,7 +13,7 @@
     "-d is a shortcut for --debug --devtool eval-cheap-module-source-map --output-pathinfo": "",
     "--content-base is which directory is being servered": "",
     "--open will open the code found in src directory at localhost:8080": "",
-    "start:dev": "webpack-dev-server -d --content-base src --inline --open",
+    "start:dev": "webpack-dev-server -d --content-base src --open",
     "1//////////////////////////////////////////        build         ////////////////////////////////////////////": "",
     "First rimraf (i.e. A deep deletion module for node) build directory then": "",
     "Build production code using webpack cli, uses the webpack.config.babel.js": "",
