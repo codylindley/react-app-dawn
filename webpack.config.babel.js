@@ -19,6 +19,15 @@ https://github.com/MoOx/postcss-cssnext
 */
 const cssnext = require('postcss-cssnext');
 
+/* add :focus selector to every :hover for keyboard accessibility
+https://github.com/postcss/postcss-focus */
+const postcssFocus = require('postcss-focus');
+
+/* A PostCSS plugin to console.log() the messages (warnings, etc.) registered
+by other PostCSS plugins.
+https://github.com/postcss/postcss-reporter */
+const postcssReporter = require('postcss-reporter');
+
 /* This is a webpack plugin that simplifies creation of HTML files to serve your
 webpack bundles. This is especially useful for webpack bundles that include a hash
 in the filename which changes every compilation.
@@ -104,7 +113,10 @@ const finalWebpackConfig = (env) => {
                         cssnext({
                             // Allow future CSS features to be used, also auto-prefixes the CSS...
                             browsers: ['last 2 versions', 'IE > 10']
-                        })
+                        }),
+                        postcssFocus(),
+                        postcssReporter()
+
                     ]
                 }
             }),
@@ -145,7 +157,7 @@ const finalWebpackConfig = (env) => {
             loader: ExtractTextPlugin.extract({
                 fallbackLoader: 'style-loader',
                 /* A CSS Module is a CSS file in which all class names and
-                animation names are scoped locally by default.
+                animation names are scoped locally by default. Note that minimize uses cssnano
                 https://github.com/css-modules/css-modules */
                 loader: 'css-loader?modules&minimize&importLoaders=1&localIdentName=[path]__[local]__[hash:base64:3]!postcss-loader'
             })
