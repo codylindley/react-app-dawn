@@ -11,17 +11,17 @@ However, a time will come when knowing the details of all aspects of a developme
 
 ## Installation:
 
-1. Install Node (v7.0.0) & npm (Use [NVM](https://github.com/creationix/nvm) to run v7.0.0 or install [latest Node/npm](https://nodejs.org/en/))
+1\. Install Node (v7.0.0) & npm (Use [NVM](https://github.com/creationix/nvm) to run v7.0.0 or install [latest Node/npm](https://nodejs.org/en/))
 
-2. Install global npm packages. Run from a terminal:
+2\. Install global npm packages. Run from a terminal:
 
 `$ npm i webpack-dev-server@2.1.0-beta.9 webpack@2.1.0-beta.25 eslint stylelint browser-sync rimraf -g`
 
-3. Install local npm packages. Download this repo, `cd` into the repo directory from a terminal and run:
+3\. Install local npm packages. Download this repo, `cd` into the repo directory from a terminal and run:
 
 `$ npm install`
 
-4. Start up a sever and server the hello world app. Run:
+4\. Start up a sever and server the hello world app. Run:
 
 `$ npm run start:dev`
 
