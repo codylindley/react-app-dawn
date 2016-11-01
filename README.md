@@ -7,7 +7,7 @@ It is likley the case that using one of the boilerplates list below is more than
 
 This isn't a slight of the boilerplates or average developers. Both get the job done just fine in most situtaions.
 
-However, a time will come when knowing the details off all aspects of a development stack will be required. When this happens you'll need something that is more boilerplate and less application seed. That is React App Dawn.
+However, a time will come when knowing the details of all aspects of a development stack will be required. When this happens you'll need something that is more boilerplate and less application seed. That is React App Dawn.
 
 ## Installation:
 
@@ -58,4 +58,6 @@ However, a time will come when knowing the details off all aspects of a developm
 * Don't place unecessary configurations in package.json that can be contained in there own configuration file (e.g. .babelrc, .nvmrc, .eslintrc, .stylelintrc).
 * Linting happens during development in the developers editor and at build time
 
+## Todo:
 
+[] localization and globalization
