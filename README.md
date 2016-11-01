@@ -11,10 +11,22 @@ However, a time will come when knowing the details of all aspects of a developme
 
 ## Installation:
 
-1. Install Node & npm
-2. run > `npm i webpack-dev-server@2.1.0-beta.9 webpack@2.1.0-beta.25 eslint stylelint browser-sync rimraf -g` from a terminal
-3. Download this repo, `cd` into the repo directory from a terminal and run > `npm install`
-4. run > `npm run start:dev` this will open the app up in a web browser at localhost:8080
+1. Install Node (v7.0.0) & npm (Use [NVM](https://github.com/creationix/nvm) to run v7.0.0 or install [latest Node/npm](https://nodejs.org/en/))
+
+2. Install global npm packages. Run from a terminal:
+
+`$ npm i webpack-dev-server@2.1.0-beta.9 webpack@2.1.0-beta.25 eslint stylelint browser-sync rimraf -g`
+
+3. Install local npm packages. Download this repo, `cd` into the repo directory from a terminal and run:
+
+`$ npm install`
+
+4. Start up a sever and server the hello world app. Run:
+
+`$ npm run start:dev`
+
+(This will open the app up in your default web browser at localhost:8080)
+
 
 ## npm CLI scripts:
 
@@ -39,7 +51,7 @@ However, a time will come when knowing the details of all aspects of a developme
 * The configuration file for webpack is [webpack.config.babel.js](webpack.config.babel.js). 
 * By using babel in the name of the file the file, [webpack.config.babel.js](webpack.config.babel.js), it will be babalized before running.
 
-#### Babel
+#### JS via Babel
 
 * Webpack uses Babel to transform [latest](http://babeljs.io/docs/plugins/preset-latest/), [stage0](http://babeljs.io/docs/plugins/preset-stage-0/), and [react](http://babeljs.io/docs/plugins/preset-react/) code to ES5 code.
 
@@ -49,15 +61,30 @@ However, a time will come when knowing the details of all aspects of a developme
 
 #### Linting
 
-* Use eslint & stylelint, linters, configured from files found in `linters` directory
+* Use [eslint](http://eslint.org/) and [stylelint](http://stylelint.io/) linters, configured from files found in `linters` directory.
+
+#### CSS
+
+* Use [postCSS](http://postcss.org/),  [nextCSS](http://cssnext.io/), and [CSS Modules](https://github.com/css-modules/css-modules)
 
 ## Conventions used:
 
 * Keep webpack config to a small single file that deals with both dev and production.
-* Own the js and CSS linter rules (starting point taken from [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) and [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard))
+* Own the JavaScript and CSS linter rules (starting point taken from [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) and [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard))
 * Don't place unecessary configurations in package.json that can be contained in there own configuration file (e.g. .babelrc, .nvmrc, .eslintrc, .stylelintrc).
-* Linting happens during development in the developers editor and at build time
+* Linting happens during development in the developers editor and at build time.
 
 ## Todo:
 
-[] localization and globalization
+[ ] localization and globalization
+[ ] isparta or istanbul
+
+## Things to consider (conflicted on prescribing just yet or assuming need):
+
+[ ] add react- helmet https://github.com/nfl/react-helmet
+[ ] Unit Testing
+[ ] react router
+[ ] redux & friends
+[ ] offline
+[ ] offline
+[ ] JS error tracking, TrackJS or Sentry
