@@ -99,7 +99,7 @@ const finalWebpackConfig = (env) => {
                 { test: /\.txt$/, loader: 'raw-loader' },
                 { test: /\.(mp4|webm)$/, loader: 'url-loader?limit=10000' },
                 { test: /\.json$/, loader: 'json-loader' },
-                { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'file-loader' },
+                { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=.]+)?$/, loader: 'file-loader' },
                 {
                     test: /\.js$/,
                     loader: 'babel-loader',
