@@ -77,6 +77,7 @@ However, a time will come when knowing the details of all aspects of a developme
 ## Todo:
 
 - [ ] localization and globalization
+- [ ] Git Hooks
 - [ ] isparta or istanbul
 
 ## Things to consider (conflicted on prescribing just yet or assuming need):

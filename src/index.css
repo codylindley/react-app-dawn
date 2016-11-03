@@ -1,0 +1,5 @@
+
+/* class global */
+:global .globalClass {
+    margin: 100px;
+}

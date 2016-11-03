@@ -48,7 +48,10 @@ const finalWebpackConfig = (env) => {
         // The webpack output property describes to webpack how to treat bundled code.
         output: {
             path: path.resolve(__dirname, 'build'),
-            filename: 'bundle.[name].[hash].js'
+            filename: 'bundle.[name].[hash].js',
+            // has to match webpack dev server path i.e. localhost:8080
+            // required so that css loads url() and fonts in dev, removed for production
+            publicPath: 'http://localhost:8080/'
         },
         module: {
             /* Loaders tell webpack how to treat these (shown with test:) files as modules as
@@ -56,6 +59,7 @@ const finalWebpackConfig = (env) => {
             rules: [
                 { // WARNING this must remain the first object in the array
                     test: /\.css$/,
+                    exclude: /node_modules/, // only use CSS modules and CSS next on our CSS
                     use: [
                         'style-loader',
                         {
@@ -74,6 +78,16 @@ const finalWebpackConfig = (env) => {
                             loader: 'postcss-loader'
                         }
                     ]
+                },
+                {
+                    // Do not transform vendor's CSS with CSS-modules
+                    // The point is that they remain in global scope.
+                    // Since we require these CSS files in our JS or CSS files,
+                    // they will be a part of our compilation either way.
+                    // So, no need for ExtractTextPlugin here.
+                    test: /\.css$/,
+                    include: /node_modules/,
+                    loaders: ['style-loader', 'css-loader'],
                 },
                 {
                     test: /.*\.(gif|png|jpe?g|svg)$/i,
@@ -151,9 +165,13 @@ const finalWebpackConfig = (env) => {
 
     // augment the webpack config object used for development so it can be used for production
     if (env === 'production') {
+        // remove local dev server path for production
+        config.output.publicPath = '/';
+        // different CSS loading for production
         config.module.rules.shift();// remove the first rule
         config.module.rules.push({// add a new rule for CSS for production
             test: /\.css$/,
+            exclude: /node_modules/, // only use CSS modules and CSS next on our CSS
             loader: ExtractTextPlugin.extract({
                 fallbackLoader: 'style-loader',
                 /* A CSS Module is a CSS file in which all class names and

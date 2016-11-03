@@ -9,4 +9,5 @@ a {
 .redFont {
     color: var(--mainColor);
     padding: 10px;
+    background-image: url(./../static/cssTestImage.png);
 }
