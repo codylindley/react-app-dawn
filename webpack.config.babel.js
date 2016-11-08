@@ -42,8 +42,10 @@ const finalWebpackConfig = (env) => {
         /* The Entry point(s) telling webpack where to start and follow the graph of
         dependencies to know what to bundle */
         entry: { // using two bundles or chunks
-            thirdparty: ['react', 'react-dom'], // bundle thridparty code in a file called bundle.thirdparty.[hash].js
-            index: './src/index.js' // bundle all non-thridparty code in a file called bundle.index.[hash].js
+            index: [
+                './src/index.js' // bundle all non-thridparty code in a file called bundle.index.[hash].js
+            ],
+            thirdparty: ['react', 'react-dom'] // bundle thridparty code in a file called bundle.thirdparty.[hash].js
         },
         // The webpack output property describes to webpack how to treat bundled code.
         output: {
@@ -52,6 +54,15 @@ const finalWebpackConfig = (env) => {
             // has to match webpack dev server path i.e. localhost:8080
             // required so that css loads url() and fonts in dev, removed for production
             publicPath: 'http://localhost:8080/'
+        },
+        devServer: { // this configures the webpack-dev-server
+            // --content-base is which directory is being servered
+            contentBase: path.resolve(__dirname, 'src'),
+            /* When using the HTML5 History API,
+            the index.html page will likely have be served in place of any 404 */
+            historyApiFallback: true,
+            // open in browser at localhost:8080
+            open: true
         },
         module: {
             /* Loaders tell webpack how to treat these (shown with test:) files as modules as
@@ -103,10 +114,7 @@ const finalWebpackConfig = (env) => {
                 {
                     test: /\.js$/,
                     loader: 'babel-loader',
-                    exclude: /node_modules/,
-                    query: {
-                        presets: ['latest', 'react', 'stage-0']
-                    }
+                    include: path.join(__dirname, 'src')
                 }
             ]
         },
@@ -118,7 +126,10 @@ const finalWebpackConfig = (env) => {
         Since most plugins are customizable via options, you need to create an instance
         of it by calling it with new.*/
         plugins: [
-            new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
+            // prints more readable module names in the browser console on HMR updates
+            // new webpack.NamedModulesPlugin(),
+            // Tell webpack we want hot reloading
+            new webpack.HotModuleReplacementPlugin(),
             // need comment
             new webpack.LoaderOptionsPlugin({
                 options: {
