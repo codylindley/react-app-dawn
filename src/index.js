@@ -1,6 +1,5 @@
 import 'sanitize.css/sanitize.css';
 
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 

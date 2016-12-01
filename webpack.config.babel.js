@@ -45,7 +45,7 @@ const finalWebpackConfig = (env) => {
             index: [
                 './src/index.js' // bundle all non-thridparty code in a file called bundle.index.[hash].js
             ],
-            thirdparty: ['react', 'react-dom'] // bundle thridparty code in a file called bundle.thirdparty.[hash].js
+            thirdparty: ['react', 'react-dom', 'babel-polyfill'] // bundle thridparty code in a file called bundle.thirdparty.[hash].js
         },
         // The webpack output property describes to webpack how to treat bundled code.
         output: {
@@ -103,8 +103,8 @@ const finalWebpackConfig = (env) => {
                 {
                     test: /.*\.(gif|png|jpe?g|svg)$/i,
                     loaders: [
-                        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                        'image-webpack?{optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}, mozjpeg: {quality: 65}}'
+                        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+                        'image-webpack-loader?{optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}, mozjpeg: {quality: 65}}'
                     ]
                 },
                 { test: /\.txt$/, loader: 'raw-loader' },
@@ -176,6 +176,8 @@ const finalWebpackConfig = (env) => {
 
     // augment the webpack config object used for development so it can be used for production
     if (env === 'production') {
+        // add devtool for production, for dev it is handled with cli flag: -d
+        config.devtool = 'eval';
         // remove local dev server path for production
         config.output.publicPath = '/';
         // different CSS loading for production
@@ -200,11 +202,6 @@ const finalWebpackConfig = (env) => {
             })
         );
 
-        // Merge all duplicate modules
-        config.plugins.push(
-            new webpack.optimize.DedupePlugin()
-        );
-
         // saves a couple of kBs
         config.plugins.push(
             new webpack.LoaderOptionsPlugin({
@@ -213,15 +210,17 @@ const finalWebpackConfig = (env) => {
                 quiet: true
             })
         );
-
         // Minify and optimize the JavaScript bundle
         config.plugins.push(
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
                     screw_ie8: true,
+                    drop_console: true,
                     // do not show warnings in the console (there is a lot of them)
                     warnings: false
-                }
+                },
+                comments: false,
+                sourceMap: false
             })
         );
         // A plugin for a more aggressive chunk merging strategy.
