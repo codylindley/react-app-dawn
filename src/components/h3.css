@@ -10,4 +10,6 @@ a {
     color: var(--mainColor);
     padding: 10px;
     background-image: url(./../static/cssTestImage.png);
+    height: 150px;
+    width: 350px;
 }
