@@ -12,7 +12,7 @@ export default () => {
 
             <p>How an image is referenced in a component:</p>
             <p><img src={src} alt="" /></p>
-            <p>The style below comes from a imported CSS file (imported file contains image reference, used in BG)</p>
+            <p>The styled box below comes from a imported CSS file (file uses CSS BG image)</p>
             <h3 className={styles.redFont}>Hello World</h3>
         </div>
     );
