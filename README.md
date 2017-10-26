@@ -5,7 +5,7 @@ It is likley the case that using one of the boilerplates list below is more than
 * [http://reactboilerplate.com](http://reactboilerplate.com)
 * [redux-easy-boilerplate](https://github.com/anorudes/redux-easy-boilerplate)
 
-This isn't a slight of the boilerplates or average developers. Both get the job done just fine in most situtaions.
+This isn't a slight of the boilerplates or average developers. Both get the job done just fine in most situations.
 
 However, a time will come when knowing the details of all aspects of a development stack will be required. When this happens you'll need something that is more boilerplate and less application seed. That is React App Dawn.
 
@@ -73,11 +73,3 @@ However, a time will come when knowing the details of all aspects of a developme
 * Own the JavaScript and CSS linter rules (starting point taken from [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) and [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard))
 * Don't place unecessary configurations in package.json that can be contained in there own configuration file (e.g. .babelrc, .nvmrc, .eslintrc, .stylelintrc).
 * Linting happens during development in the developers editor and at build time.
-
-## Todo:
-
-- [ ] localization and globalization
-- [ ] Git Hooks
-- [ ] isparta or istanbul
-
-## React starter
