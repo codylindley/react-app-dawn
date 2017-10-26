@@ -1,9 +1,18 @@
 {
+    "plugins": [
+        ["babel-root-import", { "rootPathSuffix": "src" }],
+        ["lodash"],
+        "transform-decorators-legacy",
+        "transform-class-properties",
+        "transform-es2015-modules-commonjs"
+    ],
     "presets": [
         [
-            "latest", {
-                "es2015": {
-                    "modules": false
+            "env", {
+                "modules": false,
+                "useBuiltIns": true,
+                "targets": {
+                    "browsers": ["> 0.5%","last 3 versions"]
                 }
             }
         ],

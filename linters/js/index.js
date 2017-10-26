@@ -12,7 +12,8 @@ module.exports = {
         ecmaVersion: 2017,
         sourceType: 'module',
         ecmaFeatures: {
-            experimentalObjectRestSpread: true
+            experimentalObjectRestSpread: true,
+            experimentalDecorators: true
         }
     },
     rules: {

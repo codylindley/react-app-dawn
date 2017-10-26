@@ -9,7 +9,7 @@ export default () => {
     return (
         <div>
             <h1>look at h1.js component:</h1>
-
+test
             <p>How an image is referenced in a component:</p>
             <p><img src={src} alt="" /></p>
             <p>The styled box below comes from a imported CSS file (file uses CSS BG image)</p>

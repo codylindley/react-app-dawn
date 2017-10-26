@@ -1,5 +1,8 @@
 {
     "extends": "./linters/css/custom-stylelint-config-standard.js",
+    "plugins": [
+        "stylelint-order"
+    ],
     "rules": {
         "color-hex-case": "upper",
         "string-quotes": "single",
@@ -11,6 +14,7 @@
                 ]
             }
         ],
+        "order/properties-alphabetical-order": true,
         "property-no-unknown": [
             true, {
                 "ignoreProperties": [

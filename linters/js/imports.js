@@ -52,9 +52,9 @@ module.exports = {
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/export.md
         'import/export': 'error',
 
-        // do not allow a default import name to match a named export
+        // allow a default import name to match a named export for easier shallow render testing
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-as-default.md
-        'import/no-named-as-default': 'error',
+        'import/no-named-as-default': 'off',
 
         // warn on accessing default export property names that are also named exports
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-as-default-member.md
@@ -64,9 +64,9 @@ module.exports = {
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-deprecated.md
         'import/no-deprecated': 'off',
 
-        // Forbid the use of extraneous packages
+        // Don't forbid the use of extraneous packages
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
-        'import/no-extraneous-dependencies': ['error', {
+        'import/no-extraneous-dependencies': ['off', {
             devDependencies: false,
             optionalDependencies: false
         }],

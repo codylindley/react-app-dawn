@@ -1,0 +1,33 @@
+{
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": ["./linters/js/index.js"],
+    "plugins": ["react"],
+    "rules": {
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2,
+        "react/react-in-jsx-scope": 2,
+        "react/jsx-no-duplicate-props": 2,
+        "react/jsx-no-undef": 2,
+        "react/no-unknown-property": 2,
+        "react/require-render-return": 2,
+        "react/jsx-wrap-multilines": 2,
+        "react/jsx-pascal-case": 2,
+        "react/jsx-first-prop-new-line": [2],
+        "react/jsx-max-props-per-line": [2, { "when": "always", "maximum": 2 }],
+        "react/jsx-closing-bracket-location": 2,
+        "react/jsx-equals-spacing": [2, "never"],
+        "react/jsx-indent-props": [2, 4],
+        "react/jsx-tag-spacing": [2,{"afterOpening": "allow", "closingSlash":"never", "beforeSelfClosing":"always"}],
+        "react/jsx-sort-props": [2, {"ignoreCase": true }]
+    }
+}

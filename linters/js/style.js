@@ -59,7 +59,7 @@ module.exports = {
 
         // this option sets a specific tab width for your code
         // http://eslint.org/docs/rules/indent
-        indent: ['error', 4],
+        indent: ['error', 4, { SwitchCase: 1 }],
 
         // specify whether double or single quotes should be used in JSX attributes
         // http://eslint.org/docs/rules/jsx-quotes
@@ -107,9 +107,9 @@ module.exports = {
 
         // specify the maximum length of a line in your program
         // http://eslint.org/docs/rules/max-len
-        'max-len': ['error', 100, 2, {
+        'max-len': ['error', 250, 2, {
             ignoreUrls: true,
-            ignoreComments: false,
+            ignoreComments: true,
             ignoreStrings: true,
             ignoreTemplateLiterals: true
         }],
@@ -205,14 +205,14 @@ module.exports = {
         'no-negated-condition': 'off',
 
         // disallow nested ternary expressions
-        'no-nested-ternary': 'error',
+        'no-nested-ternary': 'off',
 
         // disallow use of the Object constructor
         'no-new-object': 'error',
 
         // disallow use of unary operators, ++ and --
         // http://eslint.org/docs/rules/no-plusplus
-        'no-plusplus': 'error',
+        'no-plusplus': 'off',
 
         // disallow certain syntax forms
         // http://eslint.org/docs/rules/no-restricted-syntax
